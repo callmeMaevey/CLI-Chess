@@ -5,6 +5,19 @@
 typedef enum { Red, Black } Color;
 typedef enum { Pawn, Bishop, Knight, Rook, Queen, King } PieceType ;
 
+char char_of_PieceType ( PieceType* piece){
+  switch (*piece) {
+    case Pawn:    return 'P';
+    case Bishop:  return 'B';
+    case Knight:  return 'K';
+    case Rook:    return 'R';
+    case Queen:   return 'Q';
+    case King:    return 'K';
+  }
+
+}
+
+
 typedef struct {
  //needs a function pointer for its available moves
   PieceType type;
@@ -49,10 +62,13 @@ void drawBoard( Board* state){
 
       if( state -> tiles[i][j] -> color == Black ) {
         printf(" [b] ");
+        
       }
 
       else {
         printf(" [r] ");
+        PieceType curr = state -> tiles[i][j] -> piece -> type;
+        //printf(" [%c] ", char_of_PieceType(&curr) );
       }
       
     }
