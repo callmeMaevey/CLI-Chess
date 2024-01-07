@@ -36,7 +36,6 @@ typedef struct {
 
 Piece* startingPiece( int i, int j ){
   Piece* newPiece = (Piece*)malloc(sizeof(Piece));
-
   switch (j){
     //Rooks
     case 0:
@@ -51,7 +50,6 @@ Piece* startingPiece( int i, int j ){
     case 3: newPiece -> type = Queen; break;
     case 4: newPiece -> type = King; break;
   }
-
   switch (i){
     case 0: newPiece -> color = Red; break;
     case 7: newPiece -> color = Black; break;
@@ -68,7 +66,6 @@ Piece* startingPiece( int i, int j ){
     //Empty Tile
     default: free(newPiece); return NULL;
   }
-
   return newPiece;
 }
 
@@ -77,18 +74,16 @@ Board* newBoard() {
   Board* board = (Board*)malloc(sizeof(Board));
   for(int i = 0; i < 8; i++){
    for(int j = 0; j < 8; j++){
-
+    //new tile with new piece
     Tile* newTile = (Tile*)malloc(sizeof(Tile));
     newTile -> piece = startingPiece( i,j );
 
     board -> tiles[i][j] = newTile;
 
-    if( (i+j) % 2 ){
-      board -> tiles[i][j] -> color = Black;
-    }
-    else {
-      board -> tiles[i][j] -> color = Red;
-    }
+    //determine tile colors
+    if( (i+j) % 2 ) board -> tiles[i][j] -> color = Black;
+    else board -> tiles[i][j] -> color = Red;
+    
    }
   }
   return board;
