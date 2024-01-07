@@ -1,8 +1,6 @@
 #include "chess.h"
 
 
-
-
 int main (){
 
   drawBoard( newBoard() );
