@@ -38,50 +38,35 @@ Piece* startingPiece( int i, int j ){
   Piece* newPiece = (Piece*)malloc(sizeof(Piece));
 
   switch (j){
-
+    //Rooks
     case 0:
-    case 7:
-      newPiece -> type = Rook;
-      break;
-
+    case 7: newPiece -> type = Rook; break;
+    //Knights
     case 1:
-    case 6:
-      newPiece -> type = Knight;
-      break;
-
+    case 6: newPiece -> type = Knight; break;
+    //Bishops
     case 2:
-    case 5:
-      newPiece -> type = Bishop;
-      break;
-
-    case 3:
-      newPiece -> type = Queen;
-      break;
-
-    case 4:
-      newPiece -> type = King;
-      break;
+    case 5: newPiece -> type = Bishop; break;
+    //King+Queen
+    case 3: newPiece -> type = Queen; break;
+    case 4: newPiece -> type = King; break;
   }
 
   switch (i){
-    case 0: 
-      newPiece -> color = Red;
-      break;
+    case 0: newPiece -> color = Red; break;
+    case 7: newPiece -> color = Black; break;
+    //Red Pawns
     case 1:
       newPiece -> color = Red;
       newPiece -> type = Pawn;
       break;
+    //Black Pawns
     case 6:
       newPiece -> color = Black;
       newPiece -> type = Pawn;
       break;
-    case 7:
-      newPiece -> color = Black;
-      break;
-    default:
-      free(newPiece);
-      return NULL;
-
+    //Empty Tile
+    default: free(newPiece); return NULL;
   }
 
   return newPiece;
