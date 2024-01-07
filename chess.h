@@ -34,12 +34,34 @@ typedef struct {
   Tile* tiles[8][8];
 } Board;
 
+Piece* startingPiece( int i, int j ){
+  Piece* newPiece = (Piece*)malloc(sizeof(Piece));
+  if( i==1 ){
+    newPiece -> type = Pawn;
+    newPiece -> color = Red;
+    return newPiece
+  }
+
+}
+
 
 Board* newBoard() {
   Board* board = (Board*)malloc(sizeof(Board));
   for(int i = 0; i < 8; i++){
    for(int j = 0; j < 8; j++){
-    board -> tiles[i][j] = (Tile*)malloc(sizeof(Tile));
+
+     //todo take this out and put them in new-struct funcitons
+    
+
+
+
+
+    Tile* newTile = (Tile*)malloc(sizeof(Tile));
+    newTile -> piece = newPiece;
+
+    
+    board -> tiles[i][j] = newTile;
+    
 
     if( (i+j) % 2 ){
       board -> tiles[i][j] -> color = Black;
@@ -61,14 +83,14 @@ void drawBoard( Board* state){
       if( j == 0 ) printf("\n");
 
       if( state -> tiles[i][j] -> color == Black ) {
-        printf(" [b] ");
+        printf(" [_] ");
         
       }
 
       else {
-        printf(" [r] ");
+       printf(" [0] ");
         PieceType curr = state -> tiles[i][j] -> piece -> type;
-        //printf(" [%c] ", char_of_PieceType(&curr) );
+      //  printf(" [%c] ", char_of_PieceType(&curr) );
       }
       
     }
