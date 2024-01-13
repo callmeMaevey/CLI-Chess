@@ -1,38 +1,15 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
-typedef enum { Red, Black } Color;
-typedef enum { Pawn, Bishop, Knight, Rook, Queen, King } PieceType ;
-
-char char_of_PieceType ( PieceType* piece){
-  switch (*piece) {
-    case Pawn:    return 'P';
-    case Bishop:  return 'B';
-    case Knight:  return 'K';
-    case Rook:    return 'R';
-    case Queen:   return 'Q';
-    case King:    return 'W';
-  }
-
-}
-
-
-typedef struct {
- //needs a function pointer for its available moves
-  PieceType type;
-  Color color;
-} Piece ;
+#include "Piece.h"
+// for the chess board and piece logic
 
 typedef struct {
   Color color;
   Piece* piece;
-  
 } Tile;
 
-typedef struct {
-  Tile* tiles[8][8];
-} Board;
+typedef struct { Tile* tiles[8][8]; } Board;
 
 Piece* startingPiece( int i, int j ){
   Piece* newPiece = (Piece*)malloc(sizeof(Piece));
@@ -90,11 +67,9 @@ Board* newBoard() {
 }
 
 
-
 void drawBoard( Board* state){
   for(int i = 0; i < 8; i++){
     for(int j = 0; j < 8; j++){
-      
       if( j == 0 ) printf("\n");
       if( state -> tiles[i][j] -> piece == NULL){
         if( state -> tiles[i][j] -> color == Black ) printf(" [=] ");
@@ -105,15 +80,36 @@ void drawBoard( Board* state){
         PieceType curr = state -> tiles[i][j] -> piece -> type;
         printf(" [%c] ", char_of_PieceType(&curr) );
       }
-      
     }
   }
 }
 
+int** getValidMoves ( Board* state, int i, int j ) {
+  PieceType pieceType = state -> tiles[i][j] -> type;
+  Color pieceColor = state -> tiles[i][j] -> type;
+  int** moves;
+  int** currentMoveIndex = &moves;
+  switch (pieceType) {
 
+    case Pawn:
+      //if color = red and pos=[X][1] : can move once or twice
+      //same if color = black and pos=[0][6] but the other way
+      //if enemy piece exists on diags, can move there
+      //if piece in front, canot move straight up
+      // -> also en'pessant?
+      if(pieceColor == Red){
+        int* move = (int*)malloc(sizeof(int)*2);
+        *currentMoveIndex = (int*)malloc(sizeof(int));
+        *currentMoveIndex = &move;
 
+// I think it would be better to just use a function that takes
+// a null terminated moves-Array and a move-to-add and returns 
+// a new nullterminated moves-Array. it should also free the old one
+        currentMoveIndex++;
 
-
-
-
-
+      } else {
+        
+      }
+      break;
+  }
+}
