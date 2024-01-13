@@ -20,3 +20,10 @@ Print is like, but it needs color
  [=]  [-]  [=]  [-]  [=]  [-]  [=]  [-] 
  [P]  [P]  [P]  [P]  [P]  [P]  [P]  [P] 
  [R]  [K]  [B]  [Q]  [W]  [B]  [K]  [R] 
+
+Dependants:
+
+stdlib-----|
+stdio------|
+           V
+piece.h -> Chess.h -> chess.c

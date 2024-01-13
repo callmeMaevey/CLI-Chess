@@ -1,7 +1,7 @@
 
 #include <stdlib.h>
-#include <stdio.h>
-#include "Piece.h"
+#include <stdio.h> //for printing the board
+#include "Piece.h" //Has the Color Enum in it too
 // for the chess board and piece logic
 
 typedef struct {

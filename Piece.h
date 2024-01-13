@@ -1,4 +1,4 @@
-
+//piece structs // enumst 
 typedef enum { Pawn, Bishop, Knight, Rook, Queen, King } PieceType ;
 typedef enum { Red, Black } Color;
 
@@ -11,7 +11,6 @@ char char_of_PieceType ( PieceType* piece){
     case Queen:   return 'Q';
     case King:    return 'W';
   }
-
 }
 
 typedef struct {
