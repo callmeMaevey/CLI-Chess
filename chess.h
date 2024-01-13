@@ -89,6 +89,12 @@ int** getValidMoves ( Board* state, int i, int j ) {
   Color pieceColor = state -> tiles[i][j] -> type;
   int** moves;
   int** currentMoveIndex = &moves;
+
+// I think it would be better to just use a function that takes
+// a null terminated moves-Array and a move-to-add and returns 
+// a new nullterminated moves-Array with taht move.
+// it should also free the old one and all its child moves 
+// after a deep-copy of course.
   switch (pieceType) {
 
     case Pawn:
@@ -100,11 +106,8 @@ int** getValidMoves ( Board* state, int i, int j ) {
       if(pieceColor == Red){
         int* move = (int*)malloc(sizeof(int)*2);
         *currentMoveIndex = (int*)malloc(sizeof(int));
-        *currentMoveIndex = &move;
+        *currentMoveIndex = &move; //pointer logic going too hard here
 
-// I think it would be better to just use a function that takes
-// a null terminated moves-Array and a move-to-add and returns 
-// a new nullterminated moves-Array. it should also free the old one
         currentMoveIndex++;
 
       } else {
