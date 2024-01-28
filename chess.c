@@ -1,5 +1,6 @@
-#include "chess.h"
+#include "board.h"
 
+// game loop and turn logic
 
 int main (){
 

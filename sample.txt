@@ -26,4 +26,8 @@ Dependants:
 stdlib-----|
 stdio------|
            V
-piece.h -> Chess.h -> chess.c
+piece.h -> board.h -> chess.c
+             |           ^
+             V           |
+          moves.h -------| ????????
+
