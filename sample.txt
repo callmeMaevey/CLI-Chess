@@ -31,3 +31,7 @@ piece.h -> board.h -> chess.c
              V           |
           moves.h -------| ????????
 
+
+I need to start gaurding my inports :(
+
+the ifndef boilerplate is my least fav part of C
